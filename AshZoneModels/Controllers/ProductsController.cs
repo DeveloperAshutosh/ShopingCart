@@ -154,7 +154,7 @@ namespace AshZoneModels.Controllers
             return _context.Products.Any(e => e.ID == id);
         }
         [NonAction]
-        public async Task<string> SaveImages(IFormFile imageFile)
+        public async Task<string> SaveImages(IFormFile imageFile) 
         {
             string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
             imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
