@@ -6,6 +6,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using AshZoneModels.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AshZoneModels.Models
 {
@@ -36,10 +38,10 @@ namespace AshZoneModels.Models
         [DefaultValue("1")]
         [Column("IsAvailable", TypeName = "bit")]
         public bool IsAvailable { get; set; }
-        [Column("ImagePath",TypeName = "varchar(100)")]
+        [Column("ImagePath", TypeName = "varchar(100)")]
         public string ImagePath { get; set; }
         [NotMapped]
-        [Column("ImageFile",TypeName = "varbinary(max)")]
-        public IFormFile ImageFile { get; set; }
+        public  IFormFile ImageFile{get;set;}
+
     }
 }

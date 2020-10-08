@@ -57,11 +57,14 @@ namespace AshZoneModels.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] [Bind("ID,ProductName,ProductType,ProductDescription,Quantity,Price,IsAvailable,ImagePath")] Product product)
+        public async Task<IActionResult> Create([FromForm] [Bind("ID,ProductName,ProductType,ProductDescription,Quantity,Price,IsAvailable,ImagePath")] Product product,IFormFile formFile)
         {
             if (ModelState.IsValid)
             {
-                product.ImagePath = await SaveImages(product.ImageFile);
+                
+                //product.ImageFile = formFile;
+                product.ImagePath = await SaveImages(formFile);
+               
                 _context.Products.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -148,7 +151,7 @@ namespace AshZoneModels.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        
         private bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.ID == id);
@@ -156,9 +159,9 @@ namespace AshZoneModels.Controllers
         [NonAction]
         public async Task<string> SaveImages(IFormFile imageFile) 
         {
-            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
+            string imageName =   new String(Path.GetFileNameWithoutExtension(imageFile.FileName).ToArray()).Replace(' ', '-');
             imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
-            var imagePath = Path.Combine(_webHostEnvironment.ContentRootPath, "Images", imageName);
+            var imagePath = Path.Combine(_webHostEnvironment.ContentRootPath, "~/Images", imageName);
             using (var fileStream = new FileStream(imagePath, FileMode.Create))
             {
                 await imageFile.CopyToAsync(fileStream);
