@@ -10,7 +10,7 @@ namespace AshZoneModels.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductName = table.Column<string>(type: "varchar(50)", nullable: false),
                     ProductType = table.Column<string>(type: "varchar(50)", nullable: false),
@@ -22,7 +22,7 @@ namespace AshZoneModels.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.ID);
                 });
         }
 

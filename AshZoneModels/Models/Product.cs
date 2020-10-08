@@ -15,7 +15,7 @@ namespace AshZoneModels.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("Id", TypeName = "int")]
+        [Column("ID", TypeName = "int")]
         public int ID { get; set; }
         [Required]
         [Column("ProductName", TypeName = "varchar(50)")]
