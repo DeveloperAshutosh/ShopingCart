@@ -6,6 +6,7 @@ using AshZoneModels.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,10 +26,26 @@ namespace AshZoneModels
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRazorPages();
             services.AddControllersWithViews();
             services.AddDbContext<StoreDbContext>
            (o => o.UseSqlServer(Configuration.
             GetConnectionString("DeveloperDatabase")));
+            /*In ASP.NET Core Identity, Password Default Settings are 
+              specified in the PasswordOptions class. You can find the source 
+              code of this class on the asp.net core github repo at the following link. S
+              imply search in the repo for the PasswordOptions class.
+                https://github.com/aspnet/AspNetCore
+            Here we are are over riding password default settings in asp.net core identity*/
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 3;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireUppercase = false;
+            })
+                .AddEntityFrameworkStores<StoreDbContext>();
 
             services.AddControllers();
         }
@@ -50,7 +67,7 @@ namespace AshZoneModels
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -58,6 +75,7 @@ namespace AshZoneModels
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

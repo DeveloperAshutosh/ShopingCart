@@ -41,6 +41,7 @@ namespace AshZoneModels.Models
         [Column("ImagePath", TypeName = "varchar(100)")]
         public string ImagePath { get; set; }
         [NotMapped]
+        [Display(Name = "Product Image")]
         public  IFormFile ImageFile{get;set;}
 
     }

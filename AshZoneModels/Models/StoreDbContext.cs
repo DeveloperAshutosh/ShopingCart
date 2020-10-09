@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace AshZoneModels.Models
 {
-    public partial class StoreDbContext: DbContext
+    public partial class StoreDbContext:IdentityDbContext
     {
         public StoreDbContext()
         {
@@ -24,6 +24,7 @@ namespace AshZoneModels.Models
         // Called when we're doing database migrations, etc.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             
         }
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
