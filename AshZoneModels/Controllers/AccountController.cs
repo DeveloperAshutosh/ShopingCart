@@ -20,6 +20,12 @@ namespace AshZoneModels.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("index", "home");
+        }
 
         [HttpGet]
         public IActionResult Register()
