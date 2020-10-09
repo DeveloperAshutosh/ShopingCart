@@ -20,6 +20,7 @@ namespace AshZoneModels.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
+
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
@@ -66,6 +67,28 @@ namespace AshZoneModels.Controllers
 
             return View(model);
         }
+        [HttpGet]
+        public IActionResult SignIn()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> SignIn(SignIn model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await signInManager.PasswordSignInAsync(
+                    model.Email, model.Password, model.RememberMe, false);
 
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("index", "home");
+                }
+
+                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+            }
+
+            return View(model);
+        }
     }
 }

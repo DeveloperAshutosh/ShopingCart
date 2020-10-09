@@ -1,5 +1,5 @@
 ﻿
-@model SignIn
+
 @{
     ViewData["Title"] = "SignIN";
 }
@@ -9,41 +9,6 @@
     <p>Learn about <a href=""></a>.</p>
 
 
-    <div class="col-md-10 offset-1">
-        <div class="login-form-icon">
-            <i class="fas fa-user-circle fa-9x text-secondary"></i>
-        </div>
-        <form id="account" method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                    </div>
-                    <input asp-for="UserName" class="form-control" placeholder="Email Address" />
-                </div>
-                <span asp-validation-for="UserName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                    </div>
-                    <input asp-for="Password" class="form-control" placeholder="Password" />
-                </div>
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block">Log in</button>
-            </div>
-        </form>
-    </div>
+    
 
 </div>
