@@ -27,9 +27,17 @@
 
   <ItemGroup>
     <Folder Include="Areas\" />
-    <Folder Include="Images\" />
-    <Folder Include="Views\Admin\" />
     <Folder Include="Views\NewFolder\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\iphone7200424979.jpg" />
+    <None Include="wwwroot\Images\iphone7201423699.jpg" />
+    <None Include="wwwroot\Images\iphone7202500362.jpg" />
+    <None Include="wwwroot\Images\iphone7202511203.jpg" />
+    <None Include="wwwroot\Images\iphone7202615498.jpg" />
+    <None Include="wwwroot\Images\iphone7205403174.jpg" />
+    <None Include="wwwroot\Images\NoImage.jpg" />
   </ItemGroup>
 
 </Project>

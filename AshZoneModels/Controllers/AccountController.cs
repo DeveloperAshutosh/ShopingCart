@@ -80,9 +80,13 @@ namespace AshZoneModels.Controllers
                 var result = await signInManager.PasswordSignInAsync(
                     model.Email, model.Password, model.RememberMe, false);
 
-                if (result.Succeeded)
+                if (result.Succeeded && model.Email == "ash1@gmail.com" )
                 {
-                    return RedirectToAction("index", "home");
+                    return RedirectToAction("index", "products");
+                }
+                else if(result.Succeeded)
+                {
+                    return RedirectToAction("customer", "customer");
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");

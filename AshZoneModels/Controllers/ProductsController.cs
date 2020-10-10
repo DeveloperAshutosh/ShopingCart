@@ -9,6 +9,7 @@ using AshZoneModels.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AshZoneModels.Controllers
 {
@@ -47,16 +48,20 @@ namespace AshZoneModels.Controllers
         }
 
         // GET: Products/Create
+        
+        
         public IActionResult Create()
         {
             return View();
         }
+       
 
         // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+       
         public async Task<IActionResult> Create([FromForm] [Bind("ID,ProductName,ProductType,ProductDescription,Quantity,Price,IsAvailable,ImagePath,ImageFile")] Product product,IFormFile formFile)
         {
             if (ModelState.IsValid)
@@ -73,6 +78,8 @@ namespace AshZoneModels.Controllers
         }
 
         // GET: Products/Edit/5
+
+      
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -93,6 +100,7 @@ namespace AshZoneModels.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+       
         public async Task<IActionResult> Edit(int id, [Bind("ID,ProductName,ProductType,ProductDescription,Quantity,Price,IsAvailable,ImagePath")] Product product)
         {
             if (id != product.ID)
@@ -124,6 +132,7 @@ namespace AshZoneModels.Controllers
         }
 
         // GET: Products/Delete/5
+      
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -140,7 +149,7 @@ namespace AshZoneModels.Controllers
 
             return View(product);
         }
-
+       
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -159,14 +168,19 @@ namespace AshZoneModels.Controllers
         [NonAction]
         public async Task<string> SaveImages(IFormFile imageFile) 
         {
-            string imageName =   new String(Path.GetFileNameWithoutExtension(imageFile.FileName).ToArray()).Replace(' ', '-');
+
+
+            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
             imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
-            var imagePath = Path.Combine(_webHostEnvironment.ContentRootPath, "Images", imageName);
+            var imagePath = Path.Combine(_webHostEnvironment.ContentRootPath, "wwwroot", "Images", imageName);
             using (var fileStream = new FileStream(imagePath, FileMode.Create))
             {
                 await imageFile.CopyToAsync(fileStream);
             }
+            
             return imageName;
         }
+        
+
     }
 }

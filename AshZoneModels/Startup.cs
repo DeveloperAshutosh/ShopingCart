@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AshZoneModels.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,7 +22,7 @@ namespace AshZoneModels
         {
             Configuration = configuration;
         }
-
+        
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -37,7 +39,8 @@ namespace AshZoneModels
               imply search in the repo for the PasswordOptions class.
                 https://github.com/aspnet/AspNetCore
             Here we are are over riding password default settings in asp.net core identity*/
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+
+        services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 3;
@@ -47,7 +50,8 @@ namespace AshZoneModels
             })
                 .AddEntityFrameworkStores<StoreDbContext>();
 
-            services.AddControllers();
+
+        services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
