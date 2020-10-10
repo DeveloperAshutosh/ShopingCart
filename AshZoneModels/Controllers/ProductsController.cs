@@ -66,9 +66,12 @@ namespace AshZoneModels.Controllers
         {
             if (ModelState.IsValid)
             {
+                if(product.ImageFile != null)
+                {
+                    product.ImagePath = await SaveImages(product.ImageFile);
+                }
                 
                 
-                product.ImagePath = await SaveImages(product.ImageFile);
                
                 _context.Products.Add(product);
                 await _context.SaveChangesAsync();
@@ -168,8 +171,7 @@ namespace AshZoneModels.Controllers
         [NonAction]
         public async Task<string> SaveImages(IFormFile imageFile) 
         {
-
-
+            
             string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
             imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
             var imagePath = Path.Combine(_webHostEnvironment.ContentRootPath, "wwwroot", "Images", imageName);
