@@ -64,15 +64,16 @@ namespace AshZoneModels.Controllers
        
         public async Task<IActionResult> Create([FromForm] [Bind("ID,ProductName,ProductType,ProductDescription,Quantity,Price,IsAvailable,ImagePath,ImageFile")] Product product,IFormFile formFile)
         {
+           
+
             if (ModelState.IsValid)
             {
                 if(product.ImageFile != null)
                 {
                     product.ImagePath = await SaveImages(product.ImageFile);
                 }
-                
-                
                
+
                 _context.Products.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -182,7 +183,6 @@ namespace AshZoneModels.Controllers
             
             return imageName;
         }
-        
 
     }
 }

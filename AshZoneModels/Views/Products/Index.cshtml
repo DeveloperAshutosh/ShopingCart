@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<AshZoneModels.Models.Product>
-@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Identity 
 
 @{
+
     ViewData["Title"] = "Index";
+  
 }
 
 <h1>Index</h1>
@@ -11,7 +13,7 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-{
+
 <table class="table">
     <thead>
         <tr>
@@ -34,7 +36,7 @@
                 @Html.DisplayNameFor(model => model.IsAvailable)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ImagePath)
+                @Html.DisplayNameFor(model => model.ImageFile)
             </th>
 
             <th></th>
@@ -63,8 +65,8 @@
                     @Html.DisplayFor(modelItem => item.IsAvailable)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ImagePath)
-                    <img src="~/Images/@item.ImagePath" width="150" height="150" />
+                    @Html.DisplayFor(modelItem => item.ImageFile)
+                    <img src="~/Images/@item.ImagePath " width="150" height="150" />
                 </td>
 
                 <td>
