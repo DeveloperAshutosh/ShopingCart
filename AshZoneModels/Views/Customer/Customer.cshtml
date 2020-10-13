@@ -5,59 +5,48 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Welcome To AshZone</h1>
+
+<br />
+
+<div class="container">
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductName)
-            </th>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.ProductDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-           
-            
-
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
+    <h3>Our Products</h3>
+    <hr />
+    <div class="row">
+        @foreach (var product in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-           
-            <td>
-                
-                <img src="~/Images/@item.ImagePath" width="150" height="150" />
-            </td>
-            
-            <td>
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a>
-            </td>
-        </tr>
+            <div class="col-lg-4 mt-5">
+               @if (product.ImagePath != null)
+               {
+                <img src="~/Images/@product.ImagePath" width="150" height="150" />
+               }
+               else 
+               {
+                   <img src="~/Images/NoImage.png" width="150" height="150" /> 
+               }
+                <div class="box-element product">
+                    <h6><strong>@product.ProductName</strong></h6>
+                    <hr>
+
+
+                    <a class="btn btn-secondary" asp-route-id="@product.ID" asp-action="Details">View</a>
+
+                    <button class="btn btn-info text-white">Add to Cart</button>
+
+                    <h4 style="display: inline-block; float: right"><strong class="text-success">$ @product.Price</strong></h4>
+
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+
+
+</div>
+
+
+
+
+
 

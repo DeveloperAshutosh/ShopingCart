@@ -1,0 +1,95 @@
+﻿@model AshZoneModels.ViewModels.OrderDetailsCart
+
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<form method="post">
+    @if (Model.ListCart.Count > 0)
+    {
+        <br />
+        <input id="userId" asp-for="@Model.ListCart[0].AppUserId" hidden />
+        <div class="backgroundWhiteBorder">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header bg-dark text-light ml-0 row container">
+                        <div class="col-6">
+                            <i class="fa fa-shopping-cart"></i> &nbsp;
+                            Shopping Cart
+                        </div>
+                        <div class="col-6 text-right">
+                            <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm">Continue Shopping</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @foreach (var item in Model.ListCart)
+                        {
+                            <div class="row">
+                                <div class="d-none d-lg-block col-lg-2 text-center py-2">
+                                    @if (item.Productitem.ImagePath != null)
+                                    {
+
+                                        <img src="~/Images/@item.Productitem.ImagePath " width="150" height="150" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Images/NoImage.png" width="150" height="150" />
+                                    }
+                                </div>
+                                <div class="col-12 text-sm-center col-lg-5 text-lg-left">
+                                    <h4><strong>@item.Productitem.ProductName</strong></h4>
+                                    <h4><small>@item.Productitem.ProductDescription</small></h4>
+                                </div>
+                                <div class="col-12 text-sm-center col-lg-5 text-lg-right row">
+                                    <div class="col-4 text-md-right" style="padding-top:5px;">
+                                        <h6><strong>$@item.Productitem.Price <span class="text-muted">x</span> @item.Count </strong></h6>
+                                    </div>
+                                    <div class="col-6 col-sm-4 col-lg-6">
+                                        <div class="float-right mx-1">
+                                            <button type="submit" class="btn btn-primary" asp-action="IncrementItem" asp-route-cartId="@item.Id">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div class="float-right mx-1">
+                                            <button type="submit" class="btn btn-danger" asp-action="ReduceItem" asp-route-cartId="@item.Id">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 col-sm-4 col-lg-2 text-right">
+                                        <button type="submit" class="btn btn-outline-danger" asp-action="RemoveItem" asp-route-cartId="@item.Id">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />}
+
+                        
+                            <div class="col-12 col-md-6 offset-md-1 col-lg-4 offset-lg-3 pr-4">
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between bg-light">
+                                        <span class="text-info"> Total (USD)</span>
+                                        <strong class="text-info">$ <span id="txtOrderTotal">@Model.OrderHeader.OrderTotal</span></strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="col-12 col-lg-4 offset-lg-8 col-md-6 offset-md-6">
+                            <a asp-action="CheckOut" asp-area="Customer" asp-controller="Cart" class="btn btn-success form-control">Proceed to Checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         }
+    else
+    {
+        <div class="backgroundWhiteBorder">
+            <center class="p-5">
+                <h4 class="text-black-50">You Dont Have Any Item In Your Cart</h4>
+            </center>
+        </div>}
+</form>

@@ -21,7 +21,7 @@ namespace AshZoneModels.Models
         [Column("ProductName", TypeName = "varchar(50)")]
         // Declare the C# property that will map onto that database column.
         public string ProductName { get; set; }
-        [Required]
+
         [Column("ProductType", TypeName = "varchar(50)")]
         // Declare the C# property that will map onto that database column.
         public string ProductType { get; set; }
@@ -32,8 +32,8 @@ namespace AshZoneModels.Models
         [Column("Quantity", TypeName = "int")]
         public int Quantity { get; set; }
         [Range(0, int.MaxValue)]
-        [Column("Price", TypeName = "int")]
-        public int Price { get; set; }
+        [Column("Price", TypeName = "float")]
+        public double Price { get; set; }
         [Required]
         [DefaultValue("1")]
         [Column("IsAvailable", TypeName = "bit")]
@@ -42,7 +42,7 @@ namespace AshZoneModels.Models
         public string ImagePath { get; set; }
         [NotMapped]
         [Display(Name = "Product Image")]
-        public  IFormFile ImageFile{get;set;}
+        public  IFormFile ImageFile{get;set;}  
 
     }
 }

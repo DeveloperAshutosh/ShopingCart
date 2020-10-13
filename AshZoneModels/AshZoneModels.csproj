@@ -5,20 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\Images - Copy\iphone7200424979.jpg" />
-    <Content Remove="wwwroot\Images - Copy\iphone7201423699.jpg" />
-    <Content Remove="wwwroot\Images - Copy\iphone7202500362.jpg" />
-    <Content Remove="wwwroot\Images - Copy\iphone7202511203.jpg" />
-    <Content Remove="wwwroot\Images - Copy\iphone7202615498.jpg" />
-    <Content Remove="wwwroot\Images - Copy\iphone7205403174.jpg" />
-    <Content Remove="wwwroot\Images - Copy\NoImage.jpg" />
+    <Compile Remove="Migrations\20201009031425_Identity Added .cs" />
+    <Compile Remove="Migrations\20201009031425_Identity Added .Designer.cs" />
+    <Compile Remove="Migrations\20201013010751_Added_new_tables_for_cartand_extended_identity.cs" />
+    <Compile Remove="Migrations\20201013010751_Added_new_tables_for_cartand_extended_identity.Designer.cs" />
+    <Compile Remove="Migrations\20201013011922_Added_new_tables_for_cartand_extended_identity.cs" />
+    <Compile Remove="Migrations\20201013011922_Added_new_tables_for_cartand_extended_identity.Designer.cs" />
+    <Compile Remove="Migrations\20201013040942_Added_new_tables_for_cart_and_extended_identity.cs" />
+    <Compile Remove="Migrations\20201013040942_Added_new_tables_for_cart_and_extended_identity.Designer.cs" />
+    <Compile Remove="Migrations\20201013050904_Added_new_tables_for_cart_and_extended_identity.cs" />
+    <Compile Remove="Migrations\20201013050904_Added_new_tables_for_cart_and_extended_identity.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
-    <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
+   
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
@@ -37,24 +40,8 @@
 
   <ItemGroup>
     <Folder Include="Areas\" />
+    <Folder Include="Migrations\" />
     <Folder Include="Views\NewFolder\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\Images - Copy\iphone7200424979.jpg" />
-    <None Include="wwwroot\Images - Copy\iphone7201423699.jpg" />
-    <None Include="wwwroot\Images - Copy\iphone7202500362.jpg" />
-    <None Include="wwwroot\Images - Copy\iphone7202511203.jpg" />
-    <None Include="wwwroot\Images - Copy\iphone7202615498.jpg" />
-    <None Include="wwwroot\Images - Copy\iphone7205403174.jpg" />
-    <None Include="wwwroot\Images - Copy\NoImage.jpg" />
-    <None Include="wwwroot\Images\iphone7200424979.jpg" />
-    <None Include="wwwroot\Images\iphone7201423699.jpg" />
-    <None Include="wwwroot\Images\iphone7202500362.jpg" />
-    <None Include="wwwroot\Images\iphone7202511203.jpg" />
-    <None Include="wwwroot\Images\iphone7202615498.jpg" />
-    <None Include="wwwroot\Images\iphone7205403174.jpg" />
-    <None Include="wwwroot\Images\NoImage.jpg" />
   </ItemGroup>
 
 </Project>

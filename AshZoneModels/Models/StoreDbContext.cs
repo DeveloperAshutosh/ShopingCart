@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace AshZoneModels.Models
 {
-    public partial class StoreDbContext:IdentityDbContext
+    public partial class StoreDbContext:IdentityDbContext<AppUser>
     {
         public StoreDbContext()
         {
@@ -17,10 +17,17 @@ namespace AshZoneModels.Models
 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlServer("Server=LAPTOP-1FG071R0\\MYSERVER; Database=ASHZONA; Trusted_Connection=True; MultipleActiveResultSets=True;");
+        => options.UseSqlServer("Server=LAPTOP-1FG071R0\\MYSERVER; Database=ASHZONE; Trusted_Connection=True; MultipleActiveResultSets=True;");
 
         public virtual DbSet<Product> Products { get; set; }
-       
+        public DbSet<AppUser> AppUsers { get; set; }
+
+        public DbSet<ShopingCart> ShoppingCart { get; set; }
+
+        public DbSet<OrderHeader> OrderHeaders{ get; set; }
+
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+
         // Called when we're doing database migrations, etc.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

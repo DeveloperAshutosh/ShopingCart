@@ -40,7 +40,7 @@ namespace AshZoneModels
                 https://github.com/aspnet/AspNetCore
             Here we are are over riding password default settings in asp.net core identity*/
 
-        services.AddIdentity<IdentityUser, IdentityRole>(options =>
+        services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 3;
@@ -52,6 +52,7 @@ namespace AshZoneModels
 
 
         services.AddControllers();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

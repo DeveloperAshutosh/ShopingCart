@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace AshZoneModels.ViewModels
 {
-    public class ShopingViewModel
+    public class OrderDetailsCart
     {
-        
+        public List<ShopingCart> ListCart { get; set; }
+        public OrderHeader OrderHeader { get; set; }
     }
 }

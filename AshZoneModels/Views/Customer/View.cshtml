@@ -1,14 +1,14 @@
 ﻿@model AshZoneModels.Models.ShopingCart
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "View";
 }
-<h1>Details</h1>
-<br />
+
+
 
 
 <form method="post">
-    <input asp-for="Id" hidden />
+    <input asp-for="ProductId" hidden />
     <div class="container">
         <div class="row">
 
@@ -18,11 +18,11 @@
                     @if (Model.Productitem.ImagePath != null)
                     {
 
-                       <img src="~/Images/@Model.Productitem.ImagePath " width="150" height="150" />
+                        <img src="~/Images/@Model.Productitem.ImagePath " width="150" height="150" />
                     }
                     else
                     {
-                      <img src="~/Images/NoImage.png" width="150" height="150" />
+                        <img src="~/Images/NoImage.png" width="150" height="150" />
                     }
 
                 </div>
@@ -35,13 +35,13 @@
                         <br />
                         <h2>@Model.Productitem.ProductName</h2>
                         <hr />
-                     
+                        
                     </div>
                 </div>
 
                 <div class="row form-group">
                     <div class="col-md-8">
-                        <p>@Model.Productitem.ProductDescription</p>
+                        <p>@Model.Productitem.ProductName</p>
                     </div>
                 </div>
 
@@ -54,7 +54,8 @@
                 <div class="row form-group">
                     <div class="col-md-8">
                         <h4>Quantity</h4>
-                        
+                        <input asp-for="Count" class="form-control" />
+                        <span asp-validation-for="Count" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -66,7 +67,7 @@
                                 <button type="submit" class="text-white btn btn-success form-control">Add to cart</button>
                             </div>
                             <div class="col-6">
-                                <a class="text-white btn btn-warning form-control" asp-action="Customer">Back to list</a>
+                                <a class="text-white btn btn-warning form-control" asp-action="Index">Back to list</a>
                             </div>
                         </div>
                     </div>
@@ -77,3 +78,10 @@
         </div>
     </div>
 </form>
+
+@section Scripts{
+
+
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
