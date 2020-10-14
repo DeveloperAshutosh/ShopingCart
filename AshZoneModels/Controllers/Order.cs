@@ -22,8 +22,7 @@ namespace AshZoneModels.Controllers
 
         public async Task<IActionResult> Confirm(int id)
         {
-            var claimsidentity = (ClaimsIdentity)User.Identity;
-            var claim = claimsidentity.FindFirst(ClaimTypes.NameIdentifier);
+           
 
             OrderDetailsViewModel orderDetailsViewModel  = new OrderDetailsViewModel()
             {

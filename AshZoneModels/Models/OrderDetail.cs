@@ -23,12 +23,9 @@ namespace AshZoneModels.Models
 
         [ForeignKey("ProductItemId")]
         public virtual Product Products { get; set; }
-
         public int Count { get; set; }
-
         public string Name { get; set; }
         public string Description { get; set; }
-
         [Required]
         public double Price { get; set; }
     }

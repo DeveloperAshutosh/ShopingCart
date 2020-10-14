@@ -16,7 +16,7 @@ namespace AshZoneModels.Models
         public string UserId { get; set; }
 
         [ForeignKey("UserId")]
-        public virtual AppUser AppUsers { get; set; }
+        public virtual AppUser ApplicationUser { get; set; }
 
         [Required]
         public DateTime OrderDate { get; set; }
@@ -37,15 +37,15 @@ namespace AshZoneModels.Models
         [NotMapped]
         public DateTime PickUpDate { get; set; }
 
-        [Display(Name = "Coupon Code")]
-        
-        public string Status { get; set; }
         public string PaymentStatus { get; set; }
         public string Comments { get; set; }
 
-
         [Display(Name = "Pickup Name")]
         public string PickupName { get; set; }
+
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+
         public string TransactionId { get; set; }
 
     }

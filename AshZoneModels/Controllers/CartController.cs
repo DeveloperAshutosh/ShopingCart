@@ -29,9 +29,9 @@ namespace AshZoneModels.Controllers
 
             DetailCart.OrderHeader.OrderTotal = 0;
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
 
-            var cart = _context.ShoppingCart.Where(c => c.AppUserId == userId);
+            var cart = _context.ShoppingCart;
 
             if (cart != null)
             {

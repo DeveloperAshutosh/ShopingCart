@@ -34,15 +34,15 @@
                                 @*If the user is signed-in display Logout link*@
                                 @if (signInManager.IsSignedIn(User))
                                 {
-                                    <li class="nav-item">
-                                        <a class="nav-link text-white" asp-area="Customer" asp-controller="Cart" asp-action="Index"><i class="fas fa-shopping-cart fa-lg"></i>&nbsp;items </a>
-                                        <form method="post" asp-controller="account" asp-action="logout">
-                                            <button type="submit" style="width:auto; text-align:left"
-                                                    class="nav-link btn btn-link ml-auto">
-                                                Logout @User.Identity.Name
-                                            </button>
-                                        </form>
-                                    </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Cart" asp-action="Index"><i class="fas fa-shopping-cart fa-lg"></i>&nbsp;Items </a>
+                                    <form method="post" asp-controller="account" asp-action="logout">
+                                        <button type="submit" style="width:auto; text-align:left"
+                                                class="nav-link btn btn-link ml-auto">
+                                            Logout @User.Identity.Name
+                                        </button>
+                                    </form>
+                                </li>
                                 }
                                 else
                                 {
@@ -73,7 +73,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - AshZoneModels - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - AshZone - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
