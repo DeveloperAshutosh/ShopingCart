@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
 @inject SignInManager<AppUser> signInManager
-
+@inject IHttpContextAccessor HttpContextAccessor
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,15 +35,30 @@
                                 @*If the user is signed-in display Logout link*@
                                 @if (signInManager.IsSignedIn(User))
                                 {
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Cart" asp-action="Index"><i class="fas fa-shopping-cart fa-lg"></i>&nbsp;Items </a>
-                                    <form method="post" asp-controller="account" asp-action="logout">
-                                        <button type="submit" style="width:auto; text-align:left"
-                                                class="nav-link btn btn-link ml-auto">
-                                            Logout @User.Identity.Name
-                                        </button>
-                                    </form>
-                                </li>
+                                    @if (HttpContextAccessor.HttpContext.Session.GetInt32("ssCartCount") != null)
+                                    {
+                                        <li class="nav-item">
+                                            @{
+                                                var count = HttpContextAccessor.HttpContext.Session.GetInt32("ssCartCount");
+                                            }
+                                            <a class="nav-link text-white" asp-area="" asp-controller="Cart" asp-action="Index"><i class="fas fa-shopping-cart fa-lg"></i>&nbsp;items <b>(@count)</b></a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white" asp-area="" asp-controller="Cart" asp-action="Index"><i class="fas fa-shopping-cart fa-lg"></i>&nbsp;items <b>(0)</b></a>
+                                        </li>
+                                    }
+                                    <li class="nav-item">
+
+                                        <form method="post" asp-controller="account" asp-action="logout">
+                                            <button type="submit" style="width:auto; text-align:left"
+                                                    class="nav-link btn btn-link ml-auto">
+                                                Logout @User.Identity.Name
+                                            </button>
+                                        </form>
+                                    </li>
                                 }
                                 else
                                 {
@@ -62,7 +78,7 @@
                     </ul>
                 </div>
             </div>
-            </div>
+
         </nav>
     </header>
     <div class="container">

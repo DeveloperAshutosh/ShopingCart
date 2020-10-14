@@ -49,9 +49,15 @@ namespace AshZoneModels
                 options.Password.RequireUppercase = false;
             })
                 .AddEntityFrameworkStores<StoreDbContext>();
-
-
-        services.AddControllers();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddSession(options =>
+            {
+                options.Cookie.IsEssential = true;
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+            });
+            
+            services.AddControllers();
             
         }
 
@@ -74,7 +80,7 @@ namespace AshZoneModels
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

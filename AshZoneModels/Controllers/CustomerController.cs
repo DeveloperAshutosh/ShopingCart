@@ -58,9 +58,9 @@ namespace AshZoneModels.Controllers
             cartobject.Id = 0;
             if (ModelState.IsValid)
             {
-                var claimsIdentity = (ClaimsIdentity)this.User.Identity;
-                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-                cartobject.AppUserId = claim.Value;
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                cartobject.AppUserId = userId;
 
                 ShopingCart cartfromdb = await _context.ShoppingCart.Where(c => c.AppUserId == cartobject.AppUserId && c.ProductId == cartobject.ProductId).FirstOrDefaultAsync();
 
@@ -70,14 +70,14 @@ namespace AshZoneModels.Controllers
                 }
                 else
                 {
-                    cartfromdb.Count++;
+                    cartfromdb.Count = cartfromdb.Count + cartobject.Count;
                 }
 
                 await _context.SaveChangesAsync();
 
                 var Count = _context.ShoppingCart.Where(c => c.AppUserId == cartobject.AppUserId).ToList().Count();
 
-                
+                HttpContext.Session.SetInt32("ssCartCount", Count);
 
                 return RedirectToAction(nameof(Customer));
             }
