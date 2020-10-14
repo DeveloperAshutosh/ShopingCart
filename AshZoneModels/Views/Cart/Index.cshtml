@@ -17,7 +17,7 @@
                             Shopping Cart
                         </div>
                         <div class="col-6 text-right">
-                            <a asp-area="" asp-controller="Cart" asp-action="Index" class="btn btn-outline-info btn-sm">Continue Shopping</a>
+                            <a asp-area="" asp-controller="Customer" asp-action="customer" class="btn btn-outline-info btn-sm">Continue Shopping</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -68,7 +68,7 @@
                             <div class="col-12 col-md-6 offset-md-1 col-lg-4 offset-lg-3 pr-4">
                                 <ul class="list-group">
                                     <li class="list-group-item d-flex justify-content-between bg-light">
-                                        <span class="text-info"> Total (USD)</span>
+                                        <span class="text-info"> Total (CND)</span>
                                         <strong class="text-info">$ <span id="txtOrderTotal">@Model.OrderHeader.OrderTotal</span></strong>
                                     </li>
                                 </ul>
@@ -79,7 +79,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="col-12 col-lg-4 offset-lg-8 col-md-6 offset-md-6">
-                            <a asp-action="CheckOut" asp-area="Customer" asp-controller="Cart" class="btn btn-success form-control">Proceed to Checkout</a>
+                            <a asp-controller="Cart" asp-action="checkout"   class="btn btn-success form-control">Proceed to Checkout</a>
                         </div>
                     </div>
                 </div>

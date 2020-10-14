@@ -18,7 +18,7 @@
                             <i class="fa fa-shopping-cart"></i> &nbsp; Order Summary
                         </div>
                         <div class="col-6 text-right">
-                            <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="btn btn-outline-info btn-sm">Back to Cart</a>
+                            <a asp-area="" asp-controller="Cart" asp-action="Index" class="btn btn-outline-info btn-sm">Back to Cart</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -71,16 +71,10 @@
 }
                                         @if (Model.OrderHeader.OrderTotal > 0)
                                         {
-                                            <li class="list-group-item d-flex justify-content-between">
-                                                <div class="text-success">
-                                                    <h6 class="my-0">Promo Code</h6>
-                                                   
-                                                </div>
-                                                <span class="text-success">-$@(total - Model.OrderHeader.OrderTotal)</span>
-                                            </li>
+                                           
 }
                                         <li class="list-group-item d-flex justify-content-between bg-light">
-                                            <small class="text-info">Total (USD)</small>
+                                            <small class="text-info">Total (CND)</small>
                                             <strong class="text-info">$@(Model.OrderHeader.OrderTotal)</strong>
                                         </li>
                                     </ul>

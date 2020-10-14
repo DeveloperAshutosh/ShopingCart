@@ -22,14 +22,17 @@ namespace AshZoneModels.Controllers
 
         public async Task<IActionResult> Confirm(int id)
         {
-           
+            var claimsidentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsidentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            OrderDetailsViewModel orderDetailsViewModel  = new OrderDetailsViewModel()
+            OrderDetailsViewModel ODVM = new OrderDetailsViewModel()
             {
+                OrderHeader = await _context.OrderHeaders.Include(o => o.ApplicationUser).FirstOrDefaultAsync(o => o.Id == id && o.UserId == claim.Value),
                 OrderDetails = await _context.OrderDetails.Where(o => o.OrderId == id).ToListAsync()
             };
 
-            return View(orderDetailsViewModel);
+            return View(ODVM);
         }
+
     }
 }

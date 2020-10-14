@@ -53,11 +53,12 @@ namespace AshZoneModels.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Details(ShopingCart cartobject)
+        public async Task<IActionResult> Details(ShopingCart cartobject )
         {
-            cartobject.Id = 0;
+            //cartobject.Id = 0;
             if (ModelState.IsValid)
             {
+                cartobject.Id = 0;
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
                 cartobject.AppUserId = userId;
@@ -75,7 +76,7 @@ namespace AshZoneModels.Controllers
 
                 await _context.SaveChangesAsync();
 
-                var Count = _context.ShoppingCart.Where(c => c.AppUserId == cartobject.AppUserId).ToList().Count();
+                 var Count = _context.ShoppingCart.Where(c => c.AppUserId == cartobject.AppUserId).ToList().Count();
 
                 HttpContext.Session.SetInt32("ssCartCount", Count);
 
