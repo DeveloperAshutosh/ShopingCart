@@ -54,7 +54,7 @@ namespace AshZoneModels.Controllers
                 if (result.Succeeded)
                 {
                     await signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("index", "home");
+                    return RedirectToAction("customer", "customer");
                 }
 
                 // If there are any errors, add them to the ModelState object
@@ -80,7 +80,7 @@ namespace AshZoneModels.Controllers
                 var result = await signInManager.PasswordSignInAsync(
                     model.Email, model.Password, model.RememberMe, false);
 
-                if (result.Succeeded && model.Email == "ash1@gmail.com" )
+                if (result.Succeeded && model.Email == "admin@mail.com" )
                 {
                     return RedirectToAction("index", "products");
                 }

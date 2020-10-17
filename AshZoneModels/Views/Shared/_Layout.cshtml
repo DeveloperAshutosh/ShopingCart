@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>@ViewData["Title"]- AshZone </title>
-
+    <script src="https://kit.fontawesome.com/786e687912.js" crossorigin="anonymous"></script>
 
 
 </head>
@@ -30,12 +30,13 @@
                         </li>
 
 
-                        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                       
                             <ul class="navbar-nav ml-auto">
                                 @*If the user is signed-in display Logout link*@
                                 @if (signInManager.IsSignedIn(User))
                                 {
-                                    @if (HttpContextAccessor.HttpContext.Session.GetInt32("ssCartCount") != null)
+                                   
+                                    @if (HttpContextAccessor.HttpContext.Session.GetInt32("ssCartCount") != null )
                                     {
                                         <li class="nav-item">
                                             @{
@@ -50,15 +51,15 @@
                                             <a class="nav-link text-white" asp-area="" asp-controller="Cart" asp-action="Index"><i class="fas fa-shopping-cart fa-lg"></i>&nbsp;Items <b>(0)</b></a>
                                         </li>
                                     }
-                                    <li class="nav-item">
-
-                                        <form method="post" asp-controller="account" asp-action="logout">
-                                            <button type="submit" style="width:auto; text-align:left"
-                                                    class="nav-link btn btn-link ml-auto">
-                                                Logout @User.Identity.Name
-                                            </button>
-                                        </form>
-                                    </li>
+                            <li class="nav-item">
+                                <input value="@ViewData["GetProducts"]" name="productsearch" type="text" class="searchTerm" placeholder="search our store..........">
+                                <form method="post" asp-controller="account" asp-action="logout">
+                                    <button type="submit" style="width:auto; text-align:left"
+                                            class="nav-link btn btn-link ml-auto">
+                                        Logout @User.Identity.Name
+                                    </button>
+                                </form>
+                            </li>
                                 }
                                 else
                                 {
@@ -74,7 +75,9 @@
 
                                     </li>
                                 }
-                            </ul>
+                          
+                           </ul>
+                        
                     </ul>
                 </div>
             </div>

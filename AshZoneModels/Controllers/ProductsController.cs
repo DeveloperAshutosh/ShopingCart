@@ -68,6 +68,7 @@ namespace AshZoneModels.Controllers
 
             if (ModelState.IsValid)
             {
+                
                 if(product.ImageFile != null)
                 {
                     product.ImagePath = await SaveImages(product.ImageFile);

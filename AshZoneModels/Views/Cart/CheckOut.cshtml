@@ -2,6 +2,7 @@
 @using Microsoft.Extensions.Options
 
 
+
 @{ ViewData["Title"] = "Checkout";
     Layout = "~/Views/Shared/_Layout.cshtml"; }
 
@@ -38,7 +39,7 @@
                                             <input asp-for="@Model.OrderHeader.PickupName" id="txtName" type="text" class="form-control" />
                                         </div>
                                     </div>
-                                   
+                                    
 
                                     <div class="row my-1">
                                         <div class="col-3">
@@ -68,13 +69,11 @@
                                                 <span class="text-muted">$@(details.Productitem.Price * details.Count)</span>
                                                 @{ total += (details.Productitem.Price * details.Count); }
                                             </li>
-}
-                                        @if (Model.OrderHeader.OrderTotal > 0)
-                                        {
-                                           
-}
+                                        }
+                                       
+
                                         <li class="list-group-item d-flex justify-content-between bg-light">
-                                            <small class="text-info">Total (CND)</small>
+                                            <small class="text-info">Total (USD)</small>
                                             <strong class="text-info">$@(Model.OrderHeader.OrderTotal)</strong>
                                         </li>
                                     </ul>
@@ -87,7 +86,8 @@
                             <div class="col-12 col-md-4 offset-md-8">
                                 @{ var OrderTotalForStrip = Model.OrderHeader.OrderTotal * 100; }
 
-                                <button type="submit" id="btnPlaceOrder" onclick="return validateInput()" value="Place Order" class="btn btn-success form-control">Place Order</button>
+                               
+                                <button type="submit" id="btnPlaceOrder" class="btn btn-success form-control">Place Order</button>
                             </div>
                         </div>
                     </div>

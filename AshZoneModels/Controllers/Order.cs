@@ -18,20 +18,19 @@ namespace AshZoneModels.Controllers
         {
             _context = context;
         }
-
-
         public async Task<IActionResult> Confirm(int id)
         {
-            var claimsidentity = (ClaimsIdentity)User.Identity;
-            var claim = claimsidentity.FindFirst(ClaimTypes.NameIdentifier);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+           
 
-            OrderDetailsViewModel ODVM = new OrderDetailsViewModel()
+            OrderDetailsViewModel orderDetailsViewModel = new OrderDetailsViewModel()
             {
-                OrderHeader = await _context.OrderHeaders.Include(o => o.ApplicationUser).FirstOrDefaultAsync(o => o.Id == id && o.UserId == claim.Value),
+                OrderHeader = await _context.OrderHeaders.Include(o => o.ApplicationUser)
+                .FirstOrDefaultAsync(o => o.Id == id && o.UserId == userId),
                 OrderDetails = await _context.OrderDetails.Where(o => o.OrderId == id).ToListAsync()
             };
 
-            return View(ODVM);
+            return View(orderDetailsViewModel);
         }
 
     }

@@ -21,6 +21,7 @@ namespace AshZoneModels.Controllers
         {
             _context = context;
         }
+        
         public async Task<IActionResult> Index()
         {
             DetailCart = new OrderDetailsCart()
@@ -38,12 +39,7 @@ namespace AshZoneModels.Controllers
             {
                 
                 DetailCart.ListCart = cart.ToList();
-                /*
-                foreach (var item in DetailCart.ListCart)
-                {
-                    item.Productitem = _context.Products.Where(x => x.ID == item.ProductId).Single();
-                }
-                */
+               
             }
             
 
@@ -62,6 +58,7 @@ namespace AshZoneModels.Controllers
             DetailCart.OrderHeader.OrderTotalOriginal = DetailCart.OrderHeader.OrderTotal;
             return View(DetailCart);
         }
+        //To add one mre item to the card which is allready been added to the cart 
         public async Task<IActionResult> IncrementItem(int cartid)
         {
             var cart = await _context.ShoppingCart.FirstOrDefaultAsync(c => c.Id == cartid);
@@ -70,6 +67,7 @@ namespace AshZoneModels.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        //To reduce the item by 1 which is allready been added to the cart 
         public async Task<IActionResult> ReduceItem(int cartid)
         {
             var cart = await _context.ShoppingCart.FirstOrDefaultAsync(c => c.Id == cartid);
@@ -88,6 +86,7 @@ namespace AshZoneModels.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+        //To remove the item from the cart Completely 
         public async Task<IActionResult> RemoveItem(int cartid)
         {
             var cart = await _context.ShoppingCart.FirstOrDefaultAsync(c => c.Id == cartid);
@@ -98,48 +97,38 @@ namespace AshZoneModels.Controllers
             HttpContext.Session.SetInt32("ssCartCount", cnt);
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> CheckoutPost()
+        //Check Out Method to proceed to the payment section
+        public async Task<IActionResult> Checkout()
         {
+            DetailCart = new OrderDetailsCart()
+            {
+                OrderHeader = new Models.OrderHeader()
+            };
+
+            DetailCart.OrderHeader.OrderTotal = 0;
+
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            AppUser Appuser = await _context.AppUsers.Where(c => c.Id == claim.Value).FirstOrDefaultAsync();
 
-            DetailCart.ListCart = await _context.ShoppingCart.Where(c => c.AppUserId == claim.Value).ToListAsync();
+            var cart = _context.ShoppingCart.Where(c => c.AppUserId == claim.Value);
 
-            
-            DetailCart.OrderHeader.OrderDate = DateTime.Now;
-            DetailCart.OrderHeader.UserId = claim.Value;
-           
-
-
-            List<OrderDetail> orderDetails = new List<OrderDetail>();
-            _context.OrderHeaders.Add(DetailCart.OrderHeader);
-            await _context.SaveChangesAsync();
-
-            DetailCart.OrderHeader.OrderTotalOriginal = 0;
-
-            foreach (var item in DetailCart.ListCart)
+            if (cart != null)
             {
-                item.Productitem = await _context.Products.FirstOrDefaultAsync(m => m.ID == item.ProductId);
-
-                OrderDetail orderdetails = new OrderDetail
-                {
-                    ProductItemId = item.ProductId,
-                    OrderId = DetailCart.OrderHeader.Id,
-                    Description = item.Productitem.ProductDescription,
-                    Name = item.Productitem.ProductName,
-                    Price = item.Productitem.Price,
-                    Count = item.Count
-                };
-                DetailCart.OrderHeader.OrderTotalOriginal += orderDetails.Count * orderdetails.Price;
-                _context.OrderDetails.Add(orderdetails);
+                DetailCart.ListCart = cart.ToList();
             }
+            // To get the Total Amount Due 
+            foreach (var list in DetailCart.ListCart)
+            {
+                list.Productitem = await _context.Products.FirstOrDefaultAsync(m => m.ID == list.ProductId);
+                DetailCart.OrderHeader.OrderTotal = DetailCart.OrderHeader.OrderTotal + (list.Productitem.Price * list.Count);
+            }
+            DetailCart.OrderHeader.OrderTotalOriginal = DetailCart.OrderHeader.OrderTotal;
+            DetailCart.OrderHeader.PickupName = Appuser.UserName;
+           
+            DetailCart.OrderHeader.PickUpDate = DateTime.Now;
 
-
-            _context.ShoppingCart.RemoveRange(DetailCart.ListCart);
-            HttpContext.Session.SetInt32("ssCartCount", 0);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction("Confirm", "Order");
+            return View(DetailCart);
         }
 
     }

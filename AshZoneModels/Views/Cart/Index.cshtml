@@ -1,7 +1,7 @@
 ﻿@model AshZoneModels.ViewModels.OrderDetailsCart
 
 @{ ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml"; }
+     }
 
 <form method="post">
     @if (Model.ListCart.Count > 0)
@@ -79,7 +79,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="col-12 col-lg-4 offset-lg-8 col-md-6 offset-md-6">
-                            <a asp-controller="Cart" asp-action="checkout"   class="btn btn-success form-control">Proceed to Checkout</a>
+                            <a asp-controller="Cart" asp-action="CheckOut"   class="btn btn-success form-control">Proceed to Checkout</a>
                         </div>
                     </div>
                 </div>
@@ -89,6 +89,7 @@
     {
         <div class="backgroundWhiteBorder">
             <center class="p-5">
+                <a  asp-area="" asp-controller="Customer" asp-action="customer" class="btn btn-outline-info btn-sm" >Continue Shopping</a>
                 <h4 class="text-black-50">You Dont Have Any Item In Your Cart</h4>
             </center>
         </div>}

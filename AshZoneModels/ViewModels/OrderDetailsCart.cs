@@ -9,6 +9,7 @@ namespace AshZoneModels.ViewModels
     public class OrderDetailsCart
     {
         public List<ShopingCart> ListCart { get; set; }
+       
         public OrderHeader OrderHeader { get; set; }
     }
 }

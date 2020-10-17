@@ -26,14 +26,22 @@ namespace AshZoneModels.Controllers
         public async Task<IActionResult> Customer()
         {
            
-            
-            var cnt = _context.ShoppingCart.ToList().Count();
-
             return View(await _context.Products.ToListAsync());
         }
+        [HttpGet]
+        public async Task<IActionResult> Customer(string productsearch)
+        {
+            ViewData["GetProducts"] = productsearch;
+            var query = from x in _context.Products select x;
 
+            if (!String.IsNullOrEmpty(productsearch))
+            {
+                query = query.Where(x => x.ProductName.Contains(productsearch));
+            }
+            return View(await query.AsNoTracking().ToListAsync());
+        }
         // GET: Products/Details/5
-       
+
         public async Task<IActionResult> Details(int id)
         {
             
@@ -50,12 +58,12 @@ namespace AshZoneModels.Controllers
         }
 
 
-       
+       // To Add the product item into the cart object and handle the count of cart 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Details(ShopingCart cartobject )
         {
-            //cartobject.Id = 0;
+            
             if (ModelState.IsValid)
             {
                 cartobject.Id = 0;
@@ -63,7 +71,9 @@ namespace AshZoneModels.Controllers
 
                 cartobject.AppUserId = userId;
 
-                ShopingCart cartfromdb = await _context.ShoppingCart.Where(c => c.AppUserId == cartobject.AppUserId && c.ProductId == cartobject.ProductId).FirstOrDefaultAsync();
+                ShopingCart cartfromdb = await _context.ShoppingCart
+                    .Where(c => c.AppUserId == cartobject.AppUserId && c.ProductId == cartobject.ProductId)
+                    .FirstOrDefaultAsync();
 
                 if (cartfromdb == null)
                 {
@@ -76,7 +86,8 @@ namespace AshZoneModels.Controllers
 
                 await _context.SaveChangesAsync();
 
-                 var Count = _context.ShoppingCart.Where(c => c.AppUserId == cartobject.AppUserId).ToList().Count();
+                 var Count = _context.ShoppingCart.Where(c => c.AppUserId == cartobject.AppUserId)
+                    .ToList().Count();
 
                 HttpContext.Session.SetInt32("ssCartCount", Count);
 
@@ -84,12 +95,12 @@ namespace AshZoneModels.Controllers
             }
             else
             {
-                var productfromdb = await _context.Products.Where(m => m.ID == cartobject.ProductId).FirstOrDefaultAsync();
+                var productFromDB = await _context.Products.Where(m => m.ID == cartobject.ProductId).FirstOrDefaultAsync();
 
                 ShopingCart CartObj = new ShopingCart()
                 {
-                    Productitem = productfromdb,
-                    ProductId = productfromdb.ID
+                    Productitem = productFromDB,
+                    ProductId = productFromDB.ID
                 };
 
                 return View(CartObj);

@@ -36,17 +36,11 @@ namespace AshZoneModels.Models
         [Required]
         [NotMapped]
         public DateTime PickUpDate { get; set; }
-
-        public string PaymentStatus { get; set; }
         public string Comments { get; set; }
 
         [Display(Name = "Pickup Name")]
         public string PickupName { get; set; }
 
-        [Display(Name = "Phone Number")]
-        public string PhoneNumber { get; set; }
-
-        public string TransactionId { get; set; }
 
     }
 }

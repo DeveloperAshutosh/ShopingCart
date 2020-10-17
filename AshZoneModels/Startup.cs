@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ReflectionIT.Mvc.Paging;
 
 namespace AshZoneModels
 {
@@ -56,7 +57,11 @@ namespace AshZoneModels
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.Cookie.HttpOnly = true;
             });
-            
+            services.AddPaging(options => {
+                options.ViewName = "Bootstrap4";
+                options.PageParameterName = "pageindex";
+            });
+
             services.AddControllers();
             
         }
