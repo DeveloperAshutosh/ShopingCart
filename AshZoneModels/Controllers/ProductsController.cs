@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using AshZoneModels.ViewModels;
 
 namespace AshZoneModels.Controllers
 {
@@ -183,6 +185,11 @@ namespace AshZoneModels.Controllers
             }
             
             return imageName;
+        }
+        public OrderDetailsCart DetailCart { get; set; }
+        public async Task<IActionResult> Orders()
+        {
+
         }
 
     }
