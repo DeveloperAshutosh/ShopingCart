@@ -162,17 +162,7 @@ namespace AshZoneModels.Controllers
                     Price = item.Productitem.Price,
                     Count = item.Count
                 };
-                Orders orders = new Orders
-                {
-                    ProductItemId = item.ProductId,
-                    Name = item.Productitem.ProductName,
-                    
-                    Count = item.Count,
-                    UserName = item.ApplicationUser.UserName
-                    
-                };
-                orders.Price = orderDetails.Count * orderdetails.Price;
-                _context.Orders.Add(orders);
+               
                 DetailCart.OrderHeader.OrderTotalOriginal += orderDetails.Count * orderdetails.Price;
                 _context.OrderDetails.Add(orderdetails);
             }
