@@ -27,7 +27,7 @@ namespace AshZoneModels.Models
         public DbSet<OrderHeader> OrderHeaders{ get; set; }
 
         public DbSet<OrderDetail> OrderDetails { get; set; }
-
+        public DbSet<Orders> Orders { get; set; }
         // Called when we're doing database migrations, etc.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

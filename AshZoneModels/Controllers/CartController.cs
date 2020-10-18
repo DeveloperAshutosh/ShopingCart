@@ -152,9 +152,9 @@ namespace AshZoneModels.Controllers
             foreach (var item in DetailCart.ListCart)
             {
                 item.Productitem = await _context.Products.FirstOrDefaultAsync(m => m.ID == item.ProductId);
-
                 OrderDetail orderdetails = new OrderDetail
                 {
+                    
                     ProductItemId = item.ProductId,
                     OrderId = DetailCart.OrderHeader.Id,
                     Description = item.Productitem.ProductDescription,
@@ -162,6 +162,17 @@ namespace AshZoneModels.Controllers
                     Price = item.Productitem.Price,
                     Count = item.Count
                 };
+                Orders orders = new Orders
+                {
+                    ProductItemId = item.ProductId,
+                    Name = item.Productitem.ProductName,
+                    
+                    Count = item.Count,
+                    UserName = item.ApplicationUser.UserName
+                    
+                };
+                orders.Price = orderDetails.Count * orderdetails.Price;
+                _context.Orders.Add(orders);
                 DetailCart.OrderHeader.OrderTotalOriginal += orderDetails.Count * orderdetails.Price;
                 _context.OrderDetails.Add(orderdetails);
             }

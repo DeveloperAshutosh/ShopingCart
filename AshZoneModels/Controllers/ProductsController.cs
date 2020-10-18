@@ -186,11 +186,9 @@ namespace AshZoneModels.Controllers
             
             return imageName;
         }
-        public OrderDetailsCart DetailCart { get; set; }
         public async Task<IActionResult> Orders()
         {
-
+            return View(await _context.Orders.ToListAsync());
         }
-
     }
 }
