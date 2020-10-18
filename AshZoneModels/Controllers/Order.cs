@@ -18,6 +18,7 @@ namespace AshZoneModels.Controllers
         {
             _context = context;
         }
+        
         public async Task<IActionResult> Confirm(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -32,6 +33,8 @@ namespace AshZoneModels.Controllers
 
             return View(orderDetailsViewModel);
         }
+        
+
 
     }
 }

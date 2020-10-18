@@ -67,7 +67,7 @@ namespace AshZoneModels
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env ,IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -81,7 +81,7 @@ namespace AshZoneModels
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+           
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
@@ -94,5 +94,8 @@ namespace AshZoneModels
                 endpoints.MapRazorPages();
             });
         }
+       
+
+        
     }
 }

@@ -1,0 +1,24 @@
+﻿@model AshZoneModels.ViewModels.OrderDetailsViewModel
+@{
+    ViewData["Title"] = "Confirm";
+}
+
+<br />
+<div class="backgroundWhite">
+    <div class="row px-3">
+        <div class="col-8">
+            <h1 class="text-info">Order Confirmed</h1>
+        </div>
+        <div class="col-4 text-right">
+            <a asp-action="customer" asp-controller="customer" class="btn btn-success form-control">New Order</a>
+        </div>
+    </div>
+
+    <div style="color:maroon; font-size:40px ;" class="p-xl-5">
+        Your order has been confirmed! Your order will be delivered to you in 3-4 working days.
+        <br />
+        Thank You for providing business to AshZone .
+       
+    </div>
+</div>
+

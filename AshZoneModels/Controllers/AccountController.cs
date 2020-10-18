@@ -73,17 +73,18 @@ namespace AshZoneModels.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> SignIn(SignIn model)
+        public async Task<IActionResult> SignIn(SignIn model  )
         {
             if (ModelState.IsValid)
             {
                 var result = await signInManager.PasswordSignInAsync(
                     model.Email, model.Password, model.RememberMe, false);
 
-                if (result.Succeeded && model.Email == "admin@mail.com" )
+                if (result.Succeeded && model.Email == "admin@email.com" )
                 {
                     return RedirectToAction("index", "products");
                 }
+                
                 else if(result.Succeeded)
                 {
                     return RedirectToAction("customer", "customer");

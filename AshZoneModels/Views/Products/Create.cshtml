@@ -1,111 +1,65 @@
 ﻿@model AshZoneModels.Models.Product
-
 @{
     ViewData["Title"] = "Create";
 }
-
 <h1>Create</h1>
+<h4>Product</h4>
 <hr />
-<br />
-
-<div class="container">
-    <form asp-action="AddProducts" method="post" enctype="multipart/form-data">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-        <div class="form-group row">
-            <div class="col-3">
-                <h4><label asp-for="ProductType" class="control-label"></label></h4>
-            </div>
-            <div class="col-9">
-                <input asp-for="ProductType" class="form-control" />
-                <span asp-validation-for="ProductType" class="text-danger"></span>
-            </div>
-        </div>
-
-
-        <div class="form-group row">
-            <div class="col-3">
-                <h4><label asp-for="ProductName" class="control-label"></label></h4>
-            </div>
-            <div class="col-9">
-                <input asp-for="ProductName" class="form-control" />
-                <span asp-validation-for="ProductName" class="text-danger"></span>
-            </div>
-        </div>
-
-
-        <div class="form-group row">
-            <div class="col-3">
-                <h4><label asp-for="ProductDescription" class="control-label"></label></h4>
-            </div>
-            <div class="col-9">
-                <textarea rows="8" cols="10" asp-for="ProductDescription" class="form-control"></textarea>
-                <span asp-validation-for="ProductDescription" class="text-danger"></span>
-            </div>
-        </div>
-
-
-        <div class="form-group row">
-            <div class="col-3">
-                <h4><label asp-for="ImageFile" class="control-label"></label></h4>
-            </div>
-            <div class="col-9">
-                <input type="file" name="file" value="file" asp-for="ImageFile" class="form-control" />
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-3">
-                <h4><label asp-for="Price" class="control-label"></label></h4>
-            </div>
-            <div class="col-9">
-                <div class="row">
-                    <div class="col-1">
-                        <b class="text-success">$</b>
-                    </div>
-                    <div class="col-11">
-                        <input asp-for="Price" class="form-control" />
-                        <span asp-validation-for="Price" class="text-danger"></span>
-                    </div>
-
+<div class="row">
+    <div class="col-md-4">
+        
+            <form enctype="multipart/form-data" asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ProductName" class="control-label"></label>
+                    <input asp-for="ProductName" class="form-control" />
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
                 </div>
-            </div>
-            <div class="col-3">
-                <h4><label asp-for="Quantity" class="control-label"></label></h4>
-            </div>
-            <div class="col-9">
-                <div class="row">
-                    <div class="col-1">
-                        <b class="text-success"> </b>
-                    </div>
-                    <div class="col-11">
-                        <input asp-for="Quantity" class="form-control" />
-                        <span asp-validation-for="Quantity" class="text-danger"></span>
-                    </div>
-
+                <div class="form-group">
+                    <label asp-for="ProductType" class="control-label"></label>
+                    <input asp-for="ProductType" class="form-control" />
+                    <span asp-validation-for="ProductType" class="text-danger"></span>
                 </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-3"></div>
-
-            <div class="col-9">
-                <div class="row">
-                    <div class="col-6">
-                        <input asp-action="create" type="submit" value="Create" class="btn btn-primary form-control" />
-                    </div>
-                    <div class="col-6">
-                        <a asp-action="Index" class="btn btn-success form-control">Back to list</a>
-                    </div>
+                <div class="form-group">
+                    <label asp-for="ProductDescription" class="control-label"></label>
+                    <input asp-for="ProductDescription" class="form-control" />
+                    <span asp-validation-for="ProductDescription" class="text-danger"></span>
                 </div>
-            </div>
-
-        </div>
-
-    </form>
-
+                <div class="form-group">
+                    <label asp-for="Quantity" class="control-label"></label>
+                    <input asp-for="Quantity" class="form-control" />
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsAvailable" /> @Html.DisplayNameFor(model => model.IsAvailable)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImagePath" class="control-label"></label>
+                    <input asp-for="ImagePath" class="form-control" />
+                    <span asp-validation-for="ImagePath" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageFile" class="control-label"></label>
+                    <input asp-for="ImageFile" class="form-control" />
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+       
+    </div>
 </div>
-
-@section Scripts{
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

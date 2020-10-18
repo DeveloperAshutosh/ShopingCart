@@ -130,6 +130,47 @@ namespace AshZoneModels.Controllers
 
             return View(DetailCart);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Checkout")]
+        public async Task<IActionResult> CheckoutPost()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            DetailCart.ListCart = await _context.ShoppingCart.Where(c => c.AppUserId == claim.Value).ToListAsync();
+
+
+            DetailCart.OrderHeader.OrderDate = DateTime.Now;
+            DetailCart.OrderHeader.UserId = claim.Value;
+            List<OrderDetail> orderDetails = new List<OrderDetail>();
+            _context.OrderHeaders.Add(DetailCart.OrderHeader);
+            await _context.SaveChangesAsync();
+
+            DetailCart.OrderHeader.OrderTotalOriginal = 0;
+
+            foreach (var item in DetailCart.ListCart)
+            {
+                item.Productitem = await _context.Products.FirstOrDefaultAsync(m => m.ID == item.ProductId);
+
+                OrderDetail orderdetails = new OrderDetail
+                {
+                    ProductItemId = item.ProductId,
+                    OrderId = DetailCart.OrderHeader.Id,
+                    Description = item.Productitem.ProductDescription,
+                    Name = item.Productitem.ProductName,
+                    Price = item.Productitem.Price,
+                    Count = item.Count
+                };
+                DetailCart.OrderHeader.OrderTotalOriginal += orderDetails.Count * orderdetails.Price;
+                _context.OrderDetails.Add(orderdetails);
+            }
+            _context.ShoppingCart.RemoveRange(DetailCart.ListCart);
+            HttpContext.Session.SetInt32("ssCartCount", 0);
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Confirm", "Order");
+        }
 
     }
 }
