@@ -13,6 +13,8 @@ namespace AshZoneModels.Controllers
 
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
+        private object _roleManager;
+        private object _userManager;
 
         public AccountController(UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager)
@@ -95,5 +97,6 @@ namespace AshZoneModels.Controllers
 
             return View(model);
         }
+        
     }
 }
