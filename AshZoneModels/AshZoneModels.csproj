@@ -42,6 +42,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\" />
+    <Folder Include="Documents\" />
   </ItemGroup>
 
 </Project>
