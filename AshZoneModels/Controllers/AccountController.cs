@@ -13,8 +13,8 @@ namespace AshZoneModels.Controllers
 
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
-        private object _roleManager;
-        private object _userManager;
+        
+        
 
         public AccountController(UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager)
@@ -82,15 +82,12 @@ namespace AshZoneModels.Controllers
                 var result = await signInManager.PasswordSignInAsync(
                     model.Email, model.Password, model.RememberMe, false);
 
-                if (result.Succeeded && model.Email == "admin@email.com" )
-                {
-                    return RedirectToAction("index", "products");
-                }
-                
-                else if(result.Succeeded)
+                if (result.Succeeded  )
                 {
                     return RedirectToAction("customer", "customer");
                 }
+                
+                
 
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
             }

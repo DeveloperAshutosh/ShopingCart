@@ -33,11 +33,18 @@
                             </li>
                         }
                        
+
                     <ul class="navbar-nav ml-auto">
                         @*If the user is signed-in display Logout link*@
                         @if (signInManager.IsSignedIn(User))
                         {
-                            
+                            @if (signInManager.Context.User.Identity.Name == "admin@email.com")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="products" asp-action="Index">Admin</a>
+                                </li>
+                            }
+
 
                             @if (HttpContextAccessor.HttpContext.Session.GetInt32("ssCartCount") != null)
                             {
