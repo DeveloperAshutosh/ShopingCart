@@ -66,9 +66,9 @@
                             <li class="nav-item">
 
 
-                                <form method="post" asp-controller="account" asp-action="logout">
+                                <form method="post"  asp-controller="account" asp-action="logout">
                                     <button type="submit" style="width:auto; text-align:left"
-                                            class="nav-link btn btn-link ml-auto">
+                                            class="nav-link btn btn-link ml-auto text-white">
                                         Logout @User.Identity.Name
                                     </button>
                                 </form>
@@ -78,12 +78,12 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="account" asp-action="register">
+                                <a class="nav-link text-light" asp-controller="account" asp-action="register">
                                     Register
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="account" asp-action="signin">
+                                <a class="nav-link text-light" asp-controller="account" asp-action="signin">
                                     Sign In
                                 </a>
 
