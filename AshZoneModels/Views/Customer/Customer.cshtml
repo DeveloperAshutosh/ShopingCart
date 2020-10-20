@@ -21,26 +21,32 @@
         <div class="row">
             @foreach (var product in Model)
             {
-                <div class="col-lg-4 mt-5">
-                    @if (product.ImagePath != null)
-                    {
-                        <img src="~/Images/@product.ImagePath" height="200px" width="200px" />
-                    }
-                    else
-                    {
-                        <img src="~/Images/NoImage.png" height="200px" width="200px" />
-                    }
+            <div class="col-lg-4 mt-5">
+                @if (product.ImagePath != null)
+                {
+
+                    <a asp-route-id="@product.ID" asp-action="Details">
+                        <img src="~/Images/@product.ImagePath"  height="200px" width="200px" />
+                    </a>
+                }
+                else
+                {
+                    <a asp-route-id="@product.ID" asp-action="Details">
+                        <img src="~/Images/NoImage.png" height="200px" width="200px" />  
+                    </a>
+                    
+                }
                 <div class="box-element product">
                     <h6><strong>@product.ProductName</strong></h6>
                     <hr>
 
                     <a class="btn btn-secondary" asp-route-id="@product.ID" asp-action="Details">View</a>
-                    
-                  
+
+
                     <h4 style="display: inline-block; "><strong class="text-success">$ @product.Price</strong></h4>
 
                 </div>
-                </div>
+            </div>
             }
         </div>
     }

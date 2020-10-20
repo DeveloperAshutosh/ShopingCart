@@ -24,7 +24,6 @@ namespace AshZoneModels.Models
         public string ConfirmPassword { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
-        public int AcountNumber { get; set; }
+       
     }
 }

@@ -143,6 +143,7 @@ namespace AshZoneModels.Controllers
 
             DetailCart.OrderHeader.OrderDate = DateTime.Now;
             DetailCart.OrderHeader.UserId = claim.Value;
+            
             List<OrderDetail> orderDetails = new List<OrderDetail>();
             _context.OrderHeaders.Add(DetailCart.OrderHeader);
             await _context.SaveChangesAsync();
