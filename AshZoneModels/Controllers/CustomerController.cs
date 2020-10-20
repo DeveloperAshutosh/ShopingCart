@@ -40,7 +40,7 @@ namespace AshZoneModels.Controllers
             }
             return View(await query.AsNoTracking().ToListAsync());
         }
-        // GET: Products/Details/5
+        // GET: Products/Details/
 
         public async Task<IActionResult> Details(int id)
         {
@@ -107,10 +107,7 @@ namespace AshZoneModels.Controllers
             }
         }
 
-        public IActionResult About()
-        {
-            return View();
-        }
+       
 
     }
 }

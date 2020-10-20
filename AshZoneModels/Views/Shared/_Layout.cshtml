@@ -32,65 +32,65 @@
                                 <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                         }
-                       
 
-                    <ul class="navbar-nav ml-auto">
-                        @*If the user is signed-in display Logout link*@
-                        @if (signInManager.IsSignedIn(User))
-                        {
-                            @if (signInManager.Context.User.Identity.Name == "admin@email.com")
+
+                        <ul class="navbar-nav ml-auto">
+                            @*If the user is signed-in display Logout link*@
+                            @if (signInManager.IsSignedIn(User))
                             {
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-area="" asp-controller="products" asp-action="Index">Admin</a>
-                                </li>
-                            }
+                                @if (signInManager.Context.User.Identity.Name == "admin@email.com")
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-light" asp-area="" asp-controller="products" asp-action="Index">Admin</a>
+                                    </li>
+                                }
 
 
-                            @if (HttpContextAccessor.HttpContext.Session.GetInt32("ssCartCount") != null)
-                            {
+                                @if (HttpContextAccessor.HttpContext.Session.GetInt32("ssCartCount") != null)
+                                {
+                                    <li class="nav-item">
+                                        @{
+                                            var count = HttpContextAccessor.HttpContext.Session.GetInt32("ssCartCount");
+                                        }
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Cart" asp-action="Index"><i class="fas fa-shopping-cart fa-lg"></i>&nbsp;Items <b>(@count)</b></a>
+                                    </li>
+
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Cart" asp-action="Index"><i class="fas fa-shopping-cart fa-lg"></i>&nbsp;Items <b>(0)</b></a>
+                                    </li>
+                                }
+
                                 <li class="nav-item">
-                                    @{
-                                        var count = HttpContextAccessor.HttpContext.Session.GetInt32("ssCartCount");
-                                    }
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Cart" asp-action="Index"><i class="fas fa-shopping-cart fa-lg"></i>&nbsp;Items <b>(@count)</b></a>
+
+
+                                    <form method="post" asp-controller="account" asp-action="logout">
+                                        <button type="submit" style="width:auto; text-align:left"
+                                                class="nav-link btn btn-link ml-auto text-white">
+                                            Logout @User.Identity.Name
+                                        </button>
+                                    </form>
                                 </li>
 
                             }
                             else
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Cart" asp-action="Index"><i class="fas fa-shopping-cart fa-lg"></i>&nbsp;Items <b>(0)</b></a>
+                                    <a class="nav-link text-light" asp-controller="account" asp-action="register">
+                                        Register
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-controller="account" asp-action="signin">
+                                        Sign In
+                                    </a>
+
                                 </li>
                             }
 
-                            <li class="nav-item">
-
-
-                                <form method="post"  asp-controller="account" asp-action="logout">
-                                    <button type="submit" style="width:auto; text-align:left"
-                                            class="nav-link btn btn-link ml-auto text-white">
-                                        Logout @User.Identity.Name
-                                    </button>
-                                </form>
-                            </li>
-
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-controller="account" asp-action="register">
-                                    Register
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-controller="account" asp-action="signin">
-                                    Sign In
-                                </a>
-
-                            </li>
-                        }
-
-                    </ul>
+                        </ul>
                     </ul>
                 </div>
             </div>

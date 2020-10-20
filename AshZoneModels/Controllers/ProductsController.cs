@@ -157,7 +157,7 @@ namespace AshZoneModels.Controllers
             return View(product);
         }
        
-        // POST: Products/Delete/5
+        // POST: Products/Delete/
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -172,6 +172,8 @@ namespace AshZoneModels.Controllers
         {
             return _context.Products.Any(e => e.ID == id);
         }
+        // Method to store the images into images folder and relative path into the database
+        /* https://docs.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-3.1*/
         [NonAction]
         public async Task<string> SaveImages(IFormFile imageFile) 
         {
