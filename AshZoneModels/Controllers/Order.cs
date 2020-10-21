@@ -18,7 +18,11 @@ namespace AshZoneModels.Controllers
         {
             _context = context;
         }
-        
+        public IActionResult Payment()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Confirm(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
