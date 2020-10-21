@@ -16,12 +16,14 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-nav text-light bg-dark border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-dark navbar-nav text-light bg-dark border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" style="color:#ebb134;font-size:40px;">AshZone</a>
-                <button class="navbar-toggler" style="background-color:antiquewhite; " type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                
+                <button class="navbar-toggler first-button  " type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
+
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
@@ -31,6 +33,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
+
                         }
 
 
@@ -38,6 +41,9 @@
                             @*If the user is signed-in display Logout link*@
                             @if (signInManager.IsSignedIn(User))
                             {
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="customer" asp-action="customer">Store Items</a>
+                                </li>
                                 @if (signInManager.Context.User.Identity.Name == "admin@email.com")
                                 {
                                     <li class="nav-item">
