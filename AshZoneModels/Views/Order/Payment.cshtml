@@ -1,7 +1,7 @@
 ﻿
-<div class="container py-5">
-    
-    <!-- For demo purpose -->
+<div style="background: #ffd89b; /* fallback for old browsers */ background: -webkit-linear-gradient(to right, #19547b, #ffd89b); /* Chrome 10-25, Safari 5.1-6 */ background: linear-gradient(to right, #19547b, #ffd89b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ " class="container py-5">
+
+
     <div class="row mb-4">
         <div class="col-lg-8 mx-auto text-center">
             <h1 class="display-4"> Payment Form</h1>
@@ -18,23 +18,22 @@
                             <li class="nav-item"> <a data-toggle="pill" href="#paypal" class="nav-link "> <i class="fab fa-paypal mr-2"></i> Paypal </a> </li>
                             <li class="nav-item"> <a data-toggle="pill" href="#net-banking" class="nav-link "> <i class="fas fa-mobile-alt mr-2"></i> Net Banking </a> </li>
                         </ul>
-                    </div> <!-- End -->
-                    <!-- Credit card form content -->
+                    </div>
                     <div class="tab-content">
                         <!-- credit card info-->
                         <div id="credit-card" class="tab-pane fade show active pt-3">
                             <form role="form">
                                 <div class="form-group">
                                     <label for="username">
-                                        <h6>Card Owner</h6>
-                                    </label> <input type="text" name="username" placeholder="Card Owner Name" >
+                                        Card Owner
+                                    </label> <input type="text" name="username" placeholder="Card Owner Name">
                                 </div>
                                 <div class="form-group">
                                     <label for="cardNumber">
-                                        <h6>Card number</h6>
+                                        Card number
                                     </label>
                                     <div class="input-group">
-                                        <input type="text" name="cardNumber" placeholder="Valid card number" >
+                                        <input type="text" name="cardNumber" placeholder="Valid card number">
                                         <div class="input-group-append"> <span class="input-group-text text-muted"> <i class="fab fa-cc-visa mx-1"></i> <i class="fab fa-cc-mastercard mx-1"></i> <i class="fab fa-cc-amex mx-1"></i> </span> </div>
                                     </div>
                                 </div>
@@ -43,29 +42,29 @@
                                         <div class="form-group">
                                             <label>
                                                 <span class="hidden-xs">
-                                                    <h6>Expiration Date</h6>
+                                                    Expiration Date
                                                 </span>
                                             </label>
-                                            <div class="input-group"> <input type="number" placeholder="MM" name=""  > <input type="number" placeholder="YY" name=""  > </div>
+                                            <div class="input-group"> <input type="number" placeholder="MM" name=""> <input type="number" placeholder="YY" name=""> </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group mb-4">
-                                           
+
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer"> <a type="button" asp-controller="Cart" asp-action="CheckOut" class="subscribe btn btn-primary btn-block shadow-sm"> Confirm Payment </a>
+                                <a type="button" asp-controller="Cart" asp-action="CheckOut" class="subscribe btn btn-primary btn-block shadow-sm"> Confirm Payment </a>
                             </form>
                         </div>
-                    </div> <!-- End -->
-                    
-                   
-                        
+                    </div>
 
-                    </div> <!-- End -->
-                    <!-- End -->
+
                 </div>
+
             </div>
         </div>
     </div>
+</div>
+<!-- For demo purpose refrence https://www.w3schools.com/howto/howto_css_checkout_form.asp  -->
+  

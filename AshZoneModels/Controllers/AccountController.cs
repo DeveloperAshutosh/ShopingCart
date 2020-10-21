@@ -19,7 +19,7 @@ namespace AshZoneModels.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-
+        /* Refrence https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.1&tabs=visual-studio*/
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
