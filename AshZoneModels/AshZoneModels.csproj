@@ -42,7 +42,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\" />
-    <Folder Include="Planning\" />
   </ItemGroup>
 
 </Project>
