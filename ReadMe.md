@@ -26,14 +26,14 @@ Managing the store is a very stressful task . In order to make the store owner’s
 - To see the detail Testing cases please visit here [Detail of Features ](https://docs.google.com/document/d/1lblS6qNd7HOXrDEwNWzm3q_epRjniSRKgZ84kLpgrbc/edit)
 ### Citation
 -Bootstrap-Carousel: "@link https://www.w3schools.com/bootstrap/bootstrap_carousel.asp"
--Identity Sign in And Register: "@link  https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.1&tabs=visual-studio"
--Identity Password Extention : "@link In ASP.NET Core Identity, Password Default Settings are 
+- Identity Sign in And Register: "@link  https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.1&tabs=visual-studio"
+- Identity Password Extention : "@link In ASP.NET Core Identity, Password Default Settings are 
               specified in the PasswordOptions class. You can find the source 
               code of this class on the asp.net core github repo at the following link. 
               Simply search in the repo for the PasswordOptions class.
                 https://github.com/aspnet/AspNetCore"
 - Payment Form: "@link https://www.w3schools.com/howto/howto_css_checkout_form.asp "
-- Image Upload : "@link https://docs.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-3.1"
+- Image Upload: "@link https://docs.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-3.1"
 ## **Project detail Document**
 [Project detail](https://docs.google.com/document/d/1B6xe3t-bcQvc2Jp02ZaqRrr12wkXBRjPBa72tHDuiFE/edit)
 
