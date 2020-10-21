@@ -1,6 +1,6 @@
 # **AshZone**
 ## **Contributor**
-#### Ashutosh Kaushal
+- Ashutosh Kaushal
 Managing the store is a very stressful task . In order to make the store owner’s job a little easier I tried to make this app, where a store owners can manage the products that are for sale and also put the products for sale in an online store.  With the help of this app store owner can add new products for sale ,edit the existing products such as changing the price, pictures , description etc.Existing products also can be deleted if we don't want to sell that product any more. Store owners can also put the products for sale  online stores for online shopping. 
 
 **Requirements to run this app on your matchine**
