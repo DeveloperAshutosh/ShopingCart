@@ -7,7 +7,7 @@
 
 <h1>Details</h1>
 
-<div >
+<div style="background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(150,0,0,1))" >
     <h4>Product</h4>
     <hr />
     <dl class="row">
@@ -58,6 +58,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-warning text-white" asp-action="Edit" asp-route-id="@Model.ID">Edit</a> 
+    <a class="btn btn-success" asp-action="Index">Back to List</a>
 </div>

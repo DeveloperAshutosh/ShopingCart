@@ -1,6 +1,6 @@
 # **AshZone**
 ## **Contributor**
-Ashutosh Kaushal
+#### Ashutosh Kaushal
 Managing the store is a very stressful task . In order to make the store owner’s job a little easier I tried to make this app, where a store owners can manage the products that are for sale and also put the products for sale in an online store.  With the help of this app store owner can add new products for sale ,edit the existing products such as changing the price, pictures , description etc.Existing products also can be deleted if we don't want to sell that product any more. Store owners can also put the products for sale  online stores for online shopping. 
 
 **Requirements to run this app on your matchine**
@@ -25,7 +25,7 @@ Managing the store is a very stressful task . In order to make the store owner’s
 - To create or edit a product admin must enter the possitive numeric number in price and quantity field otherwise there will be a warning if any other character is entered
 - To see the detail Testing cases please visit here [Detail of Features ](https://docs.google.com/document/d/1lblS6qNd7HOXrDEwNWzm3q_epRjniSRKgZ84kLpgrbc/edit)
 ### Citation
--Bootstrap-Carousel: "@link https://www.w3schools.com/bootstrap/bootstrap_carousel.asp"
+- Bootstrap-Carousel: "@link https://www.w3schools.com/bootstrap/bootstrap_carousel.asp"
 - Identity Sign in And Register: "@link  https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.1&tabs=visual-studio"
 - Identity Password Extention : "@link In ASP.NET Core Identity, Password Default Settings are 
               specified in the PasswordOptions class. You can find the source 
